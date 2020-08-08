@@ -2,10 +2,13 @@ import React from 'react';
 
 import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input';
+import Textarea from '../../components/Textarea';
+import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg'
 
 import './styles.css';
+
 
 function TeacherForm() {
     return (
@@ -20,17 +23,50 @@ function TeacherForm() {
                     <Input name="name" type="text" label="Nome completo" />
                     <Input name="avatar" type="text" label="Avatar" />
                     <Input name="whatsapp" type="text" label="Whatsapp" />
-                    <Input name="bio" type="text" label="Biografia" />
+                    <Textarea name="bio" label="Biografia" />
                 </fieldset>
                 <fieldset>
                     <legend>Sobre a aula</legend>
-                    <Input name="subject" type="text" label="Matéria" />
+                    <Select
+                        options={[
+                            { value: 'Artes', label: 'Artes' },
+                            { value: 'Biologia', label: 'Biologia' },
+                            { value: 'Filosofia', label: 'Filosofia' },
+                            { value: 'Português', label: 'Português' },
+                            { value: 'Matématica', label: 'Matématica' },
+                            { value: 'Quimica', label: 'Quimica' },
+                        ]}
+                        name="subject"
+                        label="Matéria"
+                    />
                     <Input name="cost" type="text" label="Custo da sua hora por aula" />
                 </fieldset>
                 <fieldset>
-                    <legend>Hora</legend>
-                    <Input name="subject" type="text" label="Matéria" />
-                    <Input name="cost" type="text" label="Custo da sua hora por aula" />
+                    <legend>
+                        Horários disponíveis
+                        <button type="button">
+                            + Novo Horário
+                        </button>
+                    </legend>
+
+                    <div className="schedule-item">
+                        <Select
+                            options={[
+                                { value: '0', label: 'Domingo' },
+                                { value: '1', label: 'Segunda' },
+                                { value: '2', label: 'Terça' },
+                                { value: '3', label: 'Quarta' },
+                                { value: '4', label: 'Matématica' },
+                                { value: '5', label: 'Sexta' },
+                                { value: '6', label: 'Sabado' },
+                            ]}
+                            name="week_day"
+                            label="Dia da semana"
+                        />
+                        <Input name="from" type="time" label="Das" />
+                        <Input name="to" type="time" label="Até" />
+                    </div>
+
                 </fieldset>
                 <footer>
                     <p>
