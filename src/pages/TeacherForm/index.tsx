@@ -160,12 +160,12 @@ function TeacherForm() {
                                         <Select
                                             options={[
                                                 { value: '0', label: 'Domingo' },
-                                                { value: '1', label: 'Segunda' },
-                                                { value: '2', label: 'Terça' },
-                                                { value: '3', label: 'Quarta' },
-                                                { value: '4', label: 'Quinta' },
-                                                { value: '5', label: 'Sexta' },
-                                                { value: '6', label: 'Sabado' },
+                                                { value: '1', label: 'Segunda-Feira' },
+                                                { value: '2', label: 'Terça-Feira' },
+                                                { value: '3', label: 'Quarta-Feira' },
+                                                { value: '4', label: 'Quinta-Feira' },
+                                                { value: '5', label: 'Sexta-Feira' },
+                                                { value: '6', label: 'Sabado-Feira' },
                                             ]}
                                             name="week_day"
                                             label="Dia da semana"
