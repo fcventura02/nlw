@@ -8,6 +8,7 @@ import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
 import styles from './styles';
+import api from '../../services/api';
 
 export interface Teacher {
     id: number;
@@ -25,23 +26,27 @@ interface TeacerItemProps {
     favorited: boolean;
 }
 
+
 const TeacherItem: React.FC<TeacerItemProps> = ({ teacher, favorited }) => {
     const [isFavorited, setIsFavorited] = useState(favorited);
 
     function handleLinkToWhatsapp() {
+        api.post('connections', {
+            user_id: teacher.id
+        });
         Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`)
     }
 
     async function handleToggleFavorite() {
         const favorites = await AsyncStorage.getItem('favorites');
         let favoritesArray = [];
-        
+
         if (favorites) {
             favoritesArray = JSON.parse(favorites);
         };
 
         if (isFavorited) {
-            const favoriteIndex = favoritesArray.findIndex((teacherItem: Teacher)=>{
+            const favoriteIndex = favoritesArray.findIndex((teacherItem: Teacher) => {
                 return teacherItem.id === teacher.id;
             });
             favoritesArray.splice(favoriteIndex, 1);
