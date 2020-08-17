@@ -20,7 +20,7 @@ function Onboarding() {
 
     function handleNavigateToClassesPage() {
         if (pageOnboarding >= 2)
-            return navigate('Landing');
+            return navigate('SignIn');
 
         setPageOnboarding(pageOnboarding + 1)
         //return navigate('Onboarding');
