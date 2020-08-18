@@ -8,12 +8,6 @@ import OnboardingHeader from '../../components/OnboardHeader';
 
 import styles from './styles';
 
-interface PageHeaderProps {
-    message: string,
-    image: string,
-
-}
-
 function Onboarding() {
     const [pageOnboarding, setPageOnboarding] = useState(1);
     const { navigate } = useNavigation();
@@ -23,7 +17,6 @@ function Onboarding() {
             return navigate('SignIn');
 
         setPageOnboarding(pageOnboarding + 1)
-        //return navigate('Onboarding');
     }
 
     return (

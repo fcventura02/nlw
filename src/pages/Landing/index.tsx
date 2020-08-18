@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../../services/api';
+import { useAuth } from '../../contexts/auth';
 
 import landingImg from '../../assets/images/landing.png';
 import studygImg from '../../assets/images/icons/study.png';
@@ -14,6 +15,11 @@ import styles from './styles';
 function Landing() {
     const { navigate } = useNavigation();
     const [totalConnections, setTotalConnections] = useState(0);
+    const { signOut } = useAuth();
+
+    function handleSignOut() {
+        signOut()
+    }
 
     useEffect(() => {
         api.get('connections').then(res => {
@@ -54,6 +60,10 @@ function Landing() {
                 Total de {totalConnections} conexões já realizadas {' '}
                 <Image source={heartIcon} />
             </Text>
+            <Button title='Sign Out' onPress={handleSignOut}>
+                <Text>Exit</Text>
+                <Image source={heartIcon} />
+            </Button>
         </View>
     );
 }

@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
 
-import AuthContext from '../contexts/auth';
+import { useAuth } from '../contexts/auth';
 import AuthRoutes from './auth.Route';
 import AppStack from './AppStack';
+import { View, ActivityIndicator } from 'react-native';
 
 const Routes: React.FC = () => {
-    const { Navigator, Screen } = createStackNavigator();
-    const { signed } = useContext(AuthContext);
+    const { signed, loading } = useAuth();
 
+    if (loading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size='large' color='#555' />
+            </View>
+        )
+    }
     return signed ?
         <AppStack />
         :
