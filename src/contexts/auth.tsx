@@ -5,15 +5,15 @@ import api from '../services/api';
 import AsyncStorage from '@react-native-community/async-storage';
 
 interface User {
-    name: string,
-    email: string,
+    name: string;
+    email: string;
 };
 
 interface AuthContextData {
     signed: boolean;
     user: User | null;
     loading: boolean;
-    signIn(): Promise<void>;
+    signIn(email: string, password: string, storage: boolean): Promise<void>;
     signOut(): void
 };
 
@@ -32,21 +32,22 @@ export const AuthProvider: React.FC = ({ children }) => {
                 // api.defaults.headers['Authorization'] = `Bearer ${storageToken}`
 
                 setUser(JSON.parse(storageUser));
-                setLoading(false)
             }
+            setLoading(false)
         }
         loadStoragedData();
     }, [])
 
-    async function signIn() {
-        const response = await auth.sigIn();
+    const signIn = async (email: string, password: string, storage: boolean) => {
+        const response = await auth.sigIn(email, password);
 
         // api.defaults.headers['Authorization'] = `Bearer ${response.token}`
 
         setUser(response.user)
-
-        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-        await AsyncStorage.setItem('@RNAuth:token', response.token);
+        if (storage) {
+            await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
+            await AsyncStorage.setItem('@RNAuth:token', response.token);
+        }
     };
 
     function signOut() {
@@ -62,7 +63,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     )
 };
 
-export function useAuth(){
+export function useAuth() {
     const context = useContext(AuthContext);
     return context;
 }

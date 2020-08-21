@@ -1,43 +1,34 @@
 import React from 'react';
 import { View, Text, Image, ImageBackground } from 'react-native';
 
-import studyIcon from '../../assets/images/icons/study.png';
-import giveClassesIcon from '../../assets/images/icons/give-classes.png';
-import giveClassesBgImage from '../../assets/images/Backgroundonboarding-bg.png';
-import onboardingSecondImage from '../../assets/images/Background-onboarding-second.png';
-
 import styles from './styles';
 
 
 interface PageHeaderProps {
-    message: string,
-    number: number,
+    message?: string,
+    color: string,
+    image: any,
+    backgraund: any,
 }
 
-const OnboardingHeader: React.FC<PageHeaderProps> = ({ message, number }) => {
+const OnboardingHeader: React.FC<PageHeaderProps> = ({ message, color, image, backgraund }) => {
 
     return (
-        <>
+        <View style={[styles.container, styles.header,{backgroundColor:color}]}>
+            <ImageBackground
+                resizeMode='contain'
+                source={backgraund}
+                style={styles.content}
+            >
+                <Image style={styles.image} source={image} />
+                {!!message && (
+                    <Text style={styles.text}>
+                        {message}
+                    </Text>
+                )}
 
-            <View style={[number === 1 ? styles.headerPrimary : styles.headersecondary, styles.header]}>
-                <ImageBackground
-                    resizeMode='contain'
-                    source={number === 1 ? giveClassesBgImage : onboardingSecondImage}
-                    style={styles.content}
-                >
-                    <Image style={styles.image} source={number === 1 ? studyIcon : giveClassesIcon} />
-                </ImageBackground>
-            </View>
-
-            <View style={styles.contain}>
-                <Text style={styles.subtitle}>
-                    {`0${number}.`}
-                </Text>
-                <Text style={styles.text}>
-                    {message}
-                </Text>
-            </View>
-        </>
+            </ImageBackground>
+        </View>
     )
 }
 

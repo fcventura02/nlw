@@ -25,6 +25,27 @@ const styles = StyleSheet.create({
     select: {
         backgroundColor: '#8257E5',
     },
+    contain: {
+        flex: 1,
+        paddingLeft: 40,
+        paddingRight: 40,
+        justifyContent: 'space-around',
+    },
+    subtitle: {
+        color: '#6a6180',
+        opacity: 0.16,
+        fontFamily: 'Archivo_400Regular',
+        fontSize: 40,
+        lineHeight: 44,
+    },
+    text: {
+        fontFamily: 'Poppins_400Regular',
+        fontSize: 24,
+        lineHeight: 32,
+        maxWidth: 206,
+        marginVertical: 40,
+        color: '#6a6180',
+    },
 });
 
 export default styles;

@@ -20,14 +20,13 @@ export default function App() {
     return <AppLoading />
   } else {
     return (
-      <>
+
         <NavigationContainer>
           <AuthProvider>
             <Route />
+            <StatusBar style="light" />
           </AuthProvider>
         </NavigationContainer>
-        <StatusBar style="light" />
-      </>
     );
   }
 }
