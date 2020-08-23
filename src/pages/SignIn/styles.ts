@@ -3,19 +3,21 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#E5E5E5',
     },
     banner: {
-        height: '46%',
+        height: 335,
         width: '100%'
     },
     contain: {
-        padding: 40,
+        paddingHorizontal: 40,
+        paddingVertical: 56,
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: "center",
-        paddingBottom: 20,
+        paddingBottom: 0,
     },
     text: {
         fontFamily: 'Poppins_400Regular',
@@ -59,9 +61,9 @@ const styles = StyleSheet.create({
     },
     input_Focus: {
         borderLeftWidth: 1,
-        borderLeftColor:'#543210'
+        borderLeftColor: '#543210'
     },
-    
+
 
     chekbox_container: {
         flexDirection: 'row',
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
         borderColor: '#E6E6F0',
         borderWidth: 1,
     },
-
+/*
     button: {
         backgroundColor: '#04D361',
         height: 58,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 26,
         color: '#fff',
-    },
+    },*/
 });
 
 export default styles

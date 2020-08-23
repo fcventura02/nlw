@@ -5,13 +5,7 @@ const styles= StyleSheet.create({
         padding: 40,
         backgroundColor: '#8257e5',
     },
-
-    topBar:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:"center",
-
-    },
+    
     header:{
         flexDirection:'row',
         alignItems:'center',

@@ -10,27 +10,16 @@ import { Feather } from '@expo/vector-icons';
 
 import styles from './styles';
 import OnboardingHeader from '../../components/OnboardHeader';
+import InputSignIn from '../../components/InputSignIn';
 
 const SigIn: React.FC = () => {
     const { navigate } = useNavigation();
 
     const [isSelected, setSelection] = useState(false);
-    const [isShowPassword, setShowPassword] = useState(true);
-    const [isDesable, setDesable] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const { signIn } = useAuth();
-
-    function enabled() {
-        if (email != '' && password.length > 0)
-            return setDesable(true)
-        return setDesable(false)
-    };
-
-    useEffect(() => {
-        enabled()
-    }, [email, password]);
 
     function handleNavigateToCreateAcount() {
         navigate('CreateAcount');
@@ -58,70 +47,40 @@ const SigIn: React.FC = () => {
                     />
                 </View>
                 <View style={styles.contain}>
-                    <View style={styles.header}>
-                        <Text style={styles.title}>Fazer login</Text>
-                        <RectButton onPress={handleNavigateToCreateAcount}>
-                            <Text style={[styles.text, { color: '#8257E5' }]}>Criar uma conta</Text>
-                        </RectButton>
-                    </View>
-
-
-                    <View style={styles.input_container}>
-                        <View style={styles.input_item}>
-                            <TextInput
-                                onChangeText={text => setEmail(text)}
-                                value={email}
-                                style={[styles.input, { width: '100%', }]}
-                                textContentType='emailAddress'
-                                placeholder="Email"
-
-                            />
-                        </View>
-                        <View style={[styles.input_item, styles.input_item_bottom]}>
-                            <TextInput
-                                onChangeText={text => setPassword(text)}
-                                value={password}
-                                style={styles.input}
-                                secureTextEntry={isShowPassword}
-                                textContentType='password'
-                                placeholder="Senha"
-                            />
-                            <RectButton
-                                onPress={() => setShowPassword(!isShowPassword)}
-                                style={{ marginRight: 10 }}
-                            >
-                                <Feather
-                                    name={isShowPassword ? 'eye' : 'eye-off'}
-                                    size={24}
-                                    color={isShowPassword ? '#9C98A6' : '#8257E5'}
+                    <InputSignIn
+                        title='Fazer login'
+                        placeholder={{ input1: 'email', input2: 'password' }}
+                        setInput1={setEmail}
+                        setInput2={setPassword}
+                        getInput1={email}
+                        getInput2={password}
+                        buttom={{
+                            onpress: handleSignIn,
+                            title: 'Entrar',
+                            color: '#04D361'
+                        }}
+                        subTitle={() => (
+                            <RectButton onPress={handleNavigateToCreateAcount}>
+                                <Text style={[styles.text, { color: '#8257E5' }]}>Criar uma conta</Text>
+                            </RectButton>
+                        )}
+                    >
+                        <View style={styles.header}>
+                            <View style={styles.chekbox_container}>
+                                <CheckBox
+                                    value={isSelected}
+                                    onValueChange={setSelection}
+                                    style={styles.checkbox}
+                                    onTouchEndCapture={() => setSelection(!isSelected)}
                                 />
+                                <Text style={styles.text}>Lembrar-me</Text>
+                            </View>
+                            <RectButton onPress={handleNavigateToRecoverPassword}>
+                                <Text style={styles.text}>Esqueci minha senha</Text>
                             </RectButton>
                         </View>
-                    </View>
 
-
-                    <View style={styles.header}>
-                        <View style={styles.chekbox_container}>
-                            <CheckBox
-                                value={isSelected}
-                                onValueChange={setSelection}
-                                style={styles.checkbox}
-                                onTouchEndCapture={() => setSelection(!isSelected)}
-                            />
-                            <Text style={styles.text}>Lembrar-me</Text>
-                        </View>
-                        <RectButton onPress={handleNavigateToRecoverPassword}>
-                            <Text style={styles.text}>Esqueci minha senha</Text>
-                        </RectButton>
-                    </View>
-
-                    <BaseButton
-                        style={[styles.button, !isDesable && { backgroundColor: '#DCDCE5' }]}
-                        onPress={handleSignIn}
-                        enabled={isDesable}
-                    >
-                        <Text style={[styles.text_button, !isDesable && { color: '#9C98A6' }]}>Entrar</Text>
-                    </BaseButton>
+                    </InputSignIn>
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView >
