@@ -13,7 +13,7 @@ export function sigIn(email: string, password: string): Promise<Response> {
             resolve({
                 token: 'asfsfsefsh534168ssg6446ghd6fh4d6h64',
                 user: {
-                    name: 'filipe',
+                    name: 'Homer Simpson',
                     email: 'filipe@gmail.com'
                 }
             })

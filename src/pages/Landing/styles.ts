@@ -3,9 +3,50 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#8257e5',
+        backgroundColor: '#E5E5E5',
         justifyContent: "center",
-        padding: 40,
+    },
+    header: {
+        backgroundColor: '#8257E5',
+        paddingHorizontal: 40,
+        paddingTop: 30,
+    },
+    headerContain: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+    buttonOff: {
+        backgroundColor: '#774DD6',
+        borderRadius: 8,
+        width: 40,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    perfil: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imagePerfil: {
+        borderRadius: 50,
+        width: 62,
+        height: 62,
+        resizeMode: 'contain',
+    },
+    contain: {
+        paddingHorizontal: 40,
+        paddingBottom:40,
+    },
+
+    headerTitle: {
+        fontFamily: 'Poppins_400Regular',
+        color: '#D4C2FF',
+        fontWeight: '500',
+        fontSize: 12,
+        lineHeight: 22,
+        paddingLeft: 9
     },
 
     banner: {
@@ -15,7 +56,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontFamily: 'Poppins_400Regular',
-        color: '#FFF',
+        color: '#6A6180',
         fontSize: 20,
         lineHeight: 30,
         marginTop: 80,
@@ -32,13 +73,13 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        height: 150,
-        width: '48%',
+        height: 158,
+        width: 147,
         backgroundColor: '#333',
         borderRadius: 8,
         padding: 24,
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
 
     buttonPrimary: {
@@ -52,12 +93,13 @@ const styles = StyleSheet.create({
     buttonText: {
         fontFamily: 'Archivo_700Bold',
         color: '#FFF',
-        fontSize: 20
+        fontSize: 20,
+        lineHeight:22,
     },
 
     totalConnections: {
         fontFamily: 'Archivo_400Regular',
-        color: '#d4c2ff',
+        color: '#9C98A6',
         fontSize: 12,
         lineHeight: 20,
         maxWidth: 140,
