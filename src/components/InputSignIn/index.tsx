@@ -30,9 +30,14 @@ const InputSignIn: React.FC<InputProps> = ({ title, placeholder, buttom, childre
     const [isShowPassword, setShowPassword] = useState(true);
 
     function enabled() {
-        if (getInput1.length > 0 && getInput2.length > 0)
-            return setDesable(true)
-        return setDesable(false)
+        if (placeholder.input1 === 'email' && (getInput1.indexOf('.com') < 0 || getInput1.indexOf('@') < 0)) {
+            return setDesable(false)
+        }
+        if (placeholder.input2 === 'password' && getInput2.length < 6)
+            return setDesable(false)
+        if (getInput1.length < 2 || getInput2.length < 2)
+            return setDesable(false)
+        return setDesable(true)
     };
 
     useEffect(() => {
@@ -42,7 +47,7 @@ const InputSignIn: React.FC<InputProps> = ({ title, placeholder, buttom, childre
     const handleSubmit = () => {
         buttom.next ? buttom.next() : null
         buttom.onpress()
-        
+
     }
 
     return (

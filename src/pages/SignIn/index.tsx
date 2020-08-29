@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, CheckBox, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
-import { TouchableWithoutFeedback, RectButton, BaseButton } from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { View, Text, CheckBox, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, RectButton } from 'react-native-gesture-handler';
 import { useAuth } from '../../contexts/auth';
 import { useNavigation } from '@react-navigation/native';
 
 import logo from '../../assets/images/Proffylogo.png';
 import backgraundSignIn from '../../assets/images/Background-signIn.png';
-import { Feather } from '@expo/vector-icons';
 
 import styles from './styles';
 import OnboardingHeader from '../../components/OnboardHeader';

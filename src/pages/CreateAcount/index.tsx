@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
-import styles from './styles';
+import { useNavigation } from '@react-navigation/native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
+
 import InputSignIn from '../../components/InputSignIn';
-import Header from '../../components/Header';
 import TopHeader from '../../components/TopHeader';
+import register from '../../contexts/register';
+
+import styles from './styles';
 
 const CreateAcount: React.FC = () => {
+    const { navigate } = useNavigation();
     const [steep, setStep] = useState(1);
-    const [nome, setNome] = useState('');
-    const [sobrenome, setSobrenome] = useState('');
+    const [name, setName] = useState('');
+    const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const handleProgressAcount = () => {
         if (steep < 2)
             return setStep(2)
@@ -20,10 +25,14 @@ const CreateAcount: React.FC = () => {
     };
 
     const submitAcount = async () => {
-        setEmail('');
-        setPassword('');
-        setNome('');
-        setSobrenome('');
+        const response = await register({ name, lastname, email, password })
+        /*if (response === 201) {
+            setEmail('');
+            setPassword('');
+            setName('');
+            setLastname('');
+            navigate('SignIn')
+        }*/
     }
     return (
         <>
@@ -47,11 +56,11 @@ const CreateAcount: React.FC = () => {
                         {steep === 1 ?
                             <InputSignIn
                                 title='01. Quem é você?'
-                                placeholder={{ input1: 'nome', input2: 'sobrenome' }}
-                                setInput1={setNome}
-                                setInput2={setSobrenome}
-                                getInput1={nome}
-                                getInput2={sobrenome}
+                                placeholder={{ input1: 'name', input2: 'lastname' }}
+                                setInput1={setName}
+                                setInput2={setLastname}
+                                getInput1={name}
+                                getInput2={lastname}
                                 buttom={{
                                     onpress: handleProgressAcount,
                                     title: 'Próximo',

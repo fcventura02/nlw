@@ -1,3 +1,5 @@
+import api from "./api";
+
 interface Response {
     token: string;
     user: {
@@ -6,17 +8,11 @@ interface Response {
     };
 }
 
-export function sigIn(email: string, password: string): Promise<Response> {
-    
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve({
-                token: 'asfsfsefsh534168ssg6446ghd6fh4d6h64',
-                user: {
-                    name: 'Homer Simpson',
-                    email: 'filipe@gmail.com'
-                }
-            })
-        }, 2000)
-    });
+export async function sigIn (email: string, password: string): Promise<Response> {
+    const res = await api.post('/user/auth', {
+            email,
+            password,
+        })
+
+    return res.data
 }
