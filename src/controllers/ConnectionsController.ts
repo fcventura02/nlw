@@ -1,4 +1,4 @@
-import { Response, Request, response } from 'express';
+import { Response, Request } from 'express';
 
 import db from '../database/connection';
 
@@ -12,7 +12,7 @@ export default class ConnectionsController {
     };
 
     async create(req: Request, res: Response) {
-        const { user_id } = req.body;
+        const { user_id } = req.currentUser
 
         await db('connections').insert({
             user_id,
