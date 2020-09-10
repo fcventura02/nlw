@@ -33,12 +33,14 @@ export default class UserController {
 
             return res.status(200).json({
                 token,
-                id: user[0].id,
-                name: user[0].name,
-                avatar: user[0].avatar,
-                whatsapp: user[0].whatsapp,
-                email: user[0].email,
-                bio: user[0].bio
+                user: {
+                    name: user[0].name,
+                    lastname: user[0].lastname,
+                    avatar: user[0].avatar,
+                    whatsapp: user[0].whatsapp,
+                    email: user[0].email,
+                    bio: user[0].bio
+                }
             });
         } catch (err) {
             //caso tenha falha na busca do BD
@@ -49,26 +51,37 @@ export default class UserController {
     async createUser(req: Request, res: Response) {
         const {
             name,
+            lastname,
             avatar,
             whatsapp,
             email,
             password,
             bio,
         } = req.body;
-
-        await bcrypt.hash(password, 10, async (errBcrypt, password_hash) => {
-            if (errBcrypt)
-                return res.status(500).json({ err: errBcrypt })
-            await db('users').insert({
-                name,
-                avatar,
-                whatsapp,
-                email,
-                password_hash,
-                bio,
-            });
-            return res.status(201).send('ok')
-        })
+        
+        try {
+            await bcrypt.hash(password, 10, async (errBcrypt, password_hash) => {
+                if (errBcrypt)
+                    return res.status(500).json({ err: errBcrypt })
+                await db('users').insert({
+                    name,
+                    lastname,
+                    avatar,
+                    whatsapp,
+                    email,
+                    password_hash,
+                    bio,
+                }).catch(err=>{
+                    console.log({err})
+                    
+                    return res.status(401).send('erro a cadastrar o usuário')
+                });
+                return res.status(201).send('ok')
+            })    
+        } catch (error) {
+            return res.status(401).send('erro ao cadastrar usuário')
+        }
+        
     };
 
     async updateUser(req: Request, res: Response) {
