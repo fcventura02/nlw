@@ -45,7 +45,7 @@ function Landing() {
                 <View style={styles.headerContain}>
                     <View style={styles.perfil}>
                         <Image style={styles.imagePerfil} source={perfil} />
-                        <Text style={styles.headerTitle} >{user?.name}</Text>
+                        <Text style={styles.headerTitle} >{user?.name} {user?.lastname}</Text>
                     </View>
                     <RectButton style={styles.buttonOff} onPress={handleSignOut}>
                         <AntDesign name="poweroff" size={18} color="#D4C2FF" />

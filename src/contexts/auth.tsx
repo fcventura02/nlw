@@ -4,8 +4,11 @@ import * as auth from '../services/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 
 interface User {
-    name: string;
-    email: string;
+    name: string,
+    avatar: string,
+    whatsapp: string,
+    email: string,
+    bio: string
 };
 
 interface AuthContextData {
@@ -38,7 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }, [])
 
     const signIn = async (email: string, password: string, storage: boolean) => {
-        const response = await auth.sigIn(email, password);
+        const response:any = await auth.sigIn(email, password);
 
         // api.defaults.headers['Authorization'] = `Bearer ${response.token}`
         console.log(response)
