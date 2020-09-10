@@ -12,6 +12,7 @@ interface ConcludedProps {
     page: string,
     title: string,
     subTitle: string,
+    
 }
 
 const Concluded: React.FC<ConcludedProps> = ({ page, title, subTitle }) => {
